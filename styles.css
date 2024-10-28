@@ -1,0 +1,23 @@
+p {
+  font-size: 1.5em;
+  color: #fe7f88;
+  background-color: transparent;
+  background-image: none;
+}
+
+
+div {
+  background-image: url("img/DALL·E-2024-07-18-16.39.29-Create-a-modern-logo-for-the-YouTuber-ABGYhuDJ.-The-logo-should-prominently-feature-the-name-ABGYhuDJ-in-a-dynamic-and-stylish-font.-The-primary-col-1024x992.jpg");
+}
+
+<!--
+.catsandstars {
+  background-image: url("startransparent.gif"), url("catfront.png");
+  background-color: transparent;
+}
+-->
+
+body {
+  background-image: url(DALLE.jpg);
+ /* background-color: red; */
+}

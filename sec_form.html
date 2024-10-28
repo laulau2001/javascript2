@@ -1,0 +1,54 @@
+<?php
+session_start();
+if(!empty($_POST)){
+	if(!empty($_POST[`email`]) || !filter_var($_POST[`email`], FILTER_VALIDATE_EMAIL)){
+		die('Email incorrect ! ');
+	}
+	var_dump($_SESSION);
+	
+	if(empty($_SESSION['csrf_token']) || empty($_POST['_token']) || $_SESSION['csrf_token'] !== $_POST['_token']){
+		die('token invalide');
+		}
+	
+	require_once 'includes/connect.php';
+	$sql = 'INSERT INTO `emails` (`email`) VALUES (:email);';
+
+	$query = $db->prepare($sql);
+	
+	$query->bindValue(':email', $_POST['email'], PDO::PARAM_STR).
+	
+	$query->execute);
+	
+	}
+	
+	$token = binhex(random_bytes(32));
+	$_SESSION['csrf_token'] = $token	
+	?>
+	<!DOCTYPE html>
+	<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="referrer" content="no-referrer">
+		<title>Reservation</title>	
+	</head>
+	<body>
+	<header>
+<h1>	Formulaire d'identification</h1>
+	
+	</header>
+	<br>
+	<br>
+	<br>
+		<form method="post">
+			<label for="name">Nom : </label>
+			<input type="name" name="nom" id="name">
+			
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email">
+			
+			<input type="hidden" name="_token" value="<?= $token ?>">			
+			<button type="submit">Envoyer</button>
+		</form>	
+	</body>
+	</html>

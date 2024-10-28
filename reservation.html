@@ -1,0 +1,33 @@
+<?php
+/**
+* On ne traite pas les super globales provenant de l'utilisateur directement,
+* ces données doivent être testées et vérifiées.
+*/
+$postData = $_POST;
+
+if (
+    !isset($postData['email'])
+    || !filter_var($postData['email'], FILTER_VALIDATE_EMAIL)
+    || empty($postData['message'])
+    || trim($postData['message']) === ''
+) {
+    echo('Il faut un email et un message valides pour soumettre le formulaire.');
+    return;
+}
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reserve vite ta place ! </title>
+  </head>
+  <body>
+  <h1>Formulaire reservation</h1>
+  <br>
+  <br>
+    <form method="post">
+      <input type="text" name="name" placeholder="Nom : ".htmlspecialchars($_POST['name']). <br>
+      <input type="text" name="email" placeholder="Addresse mail : ".htmlspecialchars($_POST['email'])." <br>
+      <button type="submit">Envoyer</button>
+    </form>
+  </body>
+</html>
